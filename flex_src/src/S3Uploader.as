@@ -39,7 +39,8 @@ package  {
 		}
 
 		private function init(signatureUrl:String,  
-		                      prefixPath:String, 
+		                      prefixPath:String,
+		                      fileName:String, 
 		                      fileSizeLimit:Number,
 													queueSizeLimit:Number,
 		                      fileTypes:String,
@@ -80,7 +81,7 @@ package  {
 			
 
 			// Setup Queue, File
-			this.queue 						= new S3Queue(signatureUrl,prefixPath);
+			this.queue 						= new S3Queue(signatureUrl,prefixPath,fileName);
 			Globals.queue					= this.queue;
 			
 			ExternalInterface.addCallback("removeFileFromQueue", removeFileHandler);

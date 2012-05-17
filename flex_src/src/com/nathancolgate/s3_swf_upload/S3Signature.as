@@ -17,15 +17,15 @@ package com.nathancolgate.s3_swf_upload {
 
 		public function S3Signature(file:FileReference,
 																	signatureUrl:String,
-																	prefixPath:String) {	
+																	prefixPath:String, fileName:String) {	
 			_file														= file;
 			
 			// Create options list for file s3 upload metadata 
 			upload_options									= new S3UploadOptions;
 			upload_options.FileSize         = _file.size.toString();
 			upload_options.FileName         = getFileName(_file);
-			upload_options.ContentType      = getContentType(upload_options.FileName);
-			upload_options.key              = prefixPath + upload_options.FileName;
+			upload_options.ContentType      = getContentType(fileName);
+			upload_options.key              = prefixPath + fileName;
 			
 			var variables:URLVariables 			= new URLVariables();
 			variables.key              			= upload_options.key

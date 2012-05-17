@@ -11,15 +11,17 @@ package com.nathancolgate.s3_swf_upload {
 		// S3 Interaction Vars
 		private var _signatureUrl:String;
 		private var _prefixPath:String;
+		private var _fileName:String;
 
 		public var currentSignature:S3Signature;		
 
 		public function S3Queue(signatureUrl:String,
-														prefixPath:String,
+														prefixPath:String, fileName:String,
 														source:Array = null) {
 															
 			_signatureUrl = signatureUrl;
 			_prefixPath	  = prefixPath;
+			_fileName = fileName;
 			super(source);
 
 			// Outgoing calls
@@ -34,7 +36,7 @@ package com.nathancolgate.s3_swf_upload {
 			// ExternalInterface.call('s3_swf.jsLog','uploadNextFile');
 			// ExternalInterface.call('s3_swf.jsLog','Start uploadNextFile...');
 			var next_file:FileReference = FileReference(this.getItemAt(0));
-			currentSignature = new S3Signature(next_file,_signatureUrl,_prefixPath);
+			currentSignature = new S3Signature(next_file,_signatureUrl,_prefixPath,_fileName);
 			// ExternalInterface.call('s3_swf.jsLog','End uploadNextFile');
 		}
 		
