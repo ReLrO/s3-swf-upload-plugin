@@ -84,8 +84,6 @@ package  {
 			Globals.queue					= this.queue;
 			
 			ExternalInterface.addCallback("removeFileFromQueue", removeFileHandler);
-			ExternalInterface.addCallback("changeFileNameInQueue", changeFileName);
-			
 			// ExternalInterface.call('s3_swf.jsLog','Initialized');
 			
 		}
@@ -173,13 +171,6 @@ package  {
 				ExternalInterface.call(S3Uploader.s3_swf_obj+'.onFileNotInQueue');
 				// ExternalInterface.call('s3_swf.jsLog','onFileNotInQueue called');
 			}
-		}
-		
-		// change file name in the selected queue index
-		private function changeFileName(index:Number, name:String):void{
-			var get_file:FileReference = FileReference(this.queue.getItemAt(index));
-			get_file.name = name; 
-			this.queue.replaceItemAt(index, get_file);
 		}
 
 
