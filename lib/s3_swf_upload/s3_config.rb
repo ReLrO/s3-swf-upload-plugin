@@ -8,7 +8,7 @@ module S3SwfUpload
 
     def self.load_config
       begin
-        filename = "#{Rails.root}/config/amazon_s3.yml"
+        filename = "#{Rails.root}/config/s3.yml"
 
         buf = IO.read(filename)
         expanded = ERB.new(buf).result(binding)
