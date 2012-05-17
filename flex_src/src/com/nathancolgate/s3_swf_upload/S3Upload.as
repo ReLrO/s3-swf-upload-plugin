@@ -22,7 +22,7 @@ package com.nathancolgate.s3_swf_upload {
 	    addEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
 			addEventListener(HTTPStatusEvent.HTTP_STATUS, httpStatusHandler);
 	    addEventListener(DataEvent.UPLOAD_COMPLETE_DATA, completeHandler);
-	
+	    ExternalInterface.addCallback("changeFileName", _upload_options, changeFileNameHandler);
 		  try {
 				var next_file:FileReference = FileReference(Globals.queue.getItemAt(0));
 				this.upload(next_file);
@@ -40,7 +40,14 @@ package com.nathancolgate.s3_swf_upload {
 			// ExternalInterface.call('s3_swf.jsLog','openHandler');
 			// ExternalInterface.call('s3_swf.jsLog','Calling onUploadOpen...');
 			ExternalInterface.call(S3Uploader.s3_swf_obj+'.onUploadOpen',_upload_options,event);
+						
 			// ExternalInterface.call('s3_swf.jsLog','onUploadOpen called');
+		}
+		
+
+		
+		private function changeFileNameHandler(fileName:String):void{
+			_upload_options.fileName = fileName;
 		}
 
 		// called during the file _upload_options of each file being _upload_optionsed

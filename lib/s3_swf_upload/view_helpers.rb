@@ -10,7 +10,6 @@ module S3SwfUpload
       fileTypeDescs           = options[:fileTypeDescs] || 'All Files'
       selectMultipleFiles     = options.has_key?(:selectMultipleFiles) ? options[:selectMultipleFiles] : true
       keyPrefix               = options[:keyPrefix] || ''
-      fileName                = options[:fileName] || ''
     	signaturePath           = options[:signaturePath] || '/s3_uploads.xml'
       swfFilePath             = options[:swfFilePath] || '/flash/s3_upload.swf'
     	buttonUpPath            = options[:buttonUpPath] || '/flash/s3_up_button.gif'
@@ -68,7 +67,6 @@ module S3SwfUpload
       out << "fileTypeDescs: '#{fileTypeDescs}',\n" if fileTypeDescs
       out << "selectMultipleFiles: #{selectMultipleFiles.to_s},\n"
       out << "keyPrefix: '#{keyPrefix}',\n" if keyPrefix
-      out << "fileName: '#{fileName}',\n" if fileName
       out << "signaturePath: '#{signaturePath}',\n" if signaturePath
       out << "swfFilePath: '#{swfFilePath}',\n" if swfFilePath
       out << "buttonUpPath: '#{buttonUpPath}',\n" if buttonUpPath
