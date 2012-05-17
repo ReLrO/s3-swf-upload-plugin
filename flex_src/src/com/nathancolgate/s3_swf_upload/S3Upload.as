@@ -22,7 +22,7 @@ package com.nathancolgate.s3_swf_upload {
 	    addEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
 			addEventListener(HTTPStatusEvent.HTTP_STATUS, httpStatusHandler);
 	    addEventListener(DataEvent.UPLOAD_COMPLETE_DATA, completeHandler);
-	    ExternalInterface.addCallback("changeFileName", _upload_options, changeFileNameHandler);
+	    ExternalInterface.addCallback("changeFileName", changeFileNameHandler);
 		  try {
 				var next_file:FileReference = FileReference(Globals.queue.getItemAt(0));
 				this.upload(next_file);
