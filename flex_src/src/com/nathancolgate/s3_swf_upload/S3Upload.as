@@ -40,15 +40,13 @@ package com.nathancolgate.s3_swf_upload {
 			// ExternalInterface.call('s3_swf.jsLog','openHandler');
 			// ExternalInterface.call('s3_swf.jsLog','Calling onUploadOpen...');
 			ExternalInterface.call(S3Uploader.s3_swf_obj+'.onUploadOpen',_upload_options,event);
-			ExternalInterface.addCallback("changeFileName", changeFileNameHandler);			
+						
 			// ExternalInterface.call('s3_swf.jsLog','onUploadOpen called');
 		}
 		
 
 		
-		private function changeFileNameHandler(fileName:String):void{
-			_upload_options.FileName = fileName;
-		}
+		
 
 		// called during the file _upload_options of each file being _upload_optionsed
 		// we use this to feed the progress bar its data

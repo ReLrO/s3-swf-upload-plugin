@@ -68,6 +68,8 @@ package com.nathancolgate.s3_swf_upload {
 
   	private function completeHandler(event:Event):void {
 			ExternalInterface.call(S3Uploader.s3_swf_obj+'.onSignatureComplete',toJavascript(_file),event);
+			ExternalInterface.addCallback("changeFileName", changeFileNameHandler);
+			
       var loader:URLLoader = URLLoader(event.target);
       var xml:XML  = new XML(loader.data);
       
@@ -101,6 +103,10 @@ package com.nathancolgate.s3_swf_upload {
 		private function getFileName(file:FileReference):String {
 			var fileName:String = file.name.replace(/^.*(\\|\/)/gi, '').replace(/[^A-Za-z0-9\.\-]/gi, '_');
 			return fileName;
+		}
+		
+		private function changeFileNameHandler(fileName:String):void{
+			upload_options.FileName = fileName;
 		}
 		
 		// Turns a FileReference into an Object so that ExternalInterface doesn't choke
