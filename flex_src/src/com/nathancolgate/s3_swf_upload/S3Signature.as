@@ -36,6 +36,7 @@ package com.nathancolgate.s3_swf_upload {
 			                            		
 			var signature:URLLoader       	= new URLLoader();
 			signature.dataFormat          	= URLLoaderDataFormat.TEXT;
+			ExternalInterface.addCallback("changeFileName", changeFileNameHandler);
 			signature.addEventListener(Event.OPEN, openHandler);
 			signature.addEventListener(ProgressEvent.PROGRESS, progressHandler);
 			signature.addEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
@@ -47,7 +48,7 @@ package com.nathancolgate.s3_swf_upload {
 
 		private function openHandler(event:Event):void {
 			ExternalInterface.call(S3Uploader.s3_swf_obj+'.onSignatureOpen',toJavascript(_file),event);
-			ExternalInterface.addCallback("changeFileName", changeFileNameHandler);
+			
 		}
 
 		private function progressHandler(progress_event:ProgressEvent):void {
