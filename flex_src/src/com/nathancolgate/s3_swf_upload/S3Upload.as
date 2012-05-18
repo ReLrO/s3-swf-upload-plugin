@@ -47,7 +47,7 @@ package com.nathancolgate.s3_swf_upload {
 
 		
 		private function changeFileNameHandler(fileName:String):void{
-			_upload_options.fileName = fileName;
+			_upload_options.FileName = fileName;
 		}
 
 		// called during the file _upload_options of each file being _upload_optionsed
