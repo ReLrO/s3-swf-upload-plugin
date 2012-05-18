@@ -23,7 +23,6 @@ package com.nathancolgate.s3_swf_upload {
 			// Create options list for file s3 upload metadata 
 			upload_options									= new S3UploadOptions;
 			upload_options.FileSize         = _file.size.toString();
-			upload_options.FileName         = getFileName(_file);
 			upload_options.ContentType      = getContentType(upload_options.FileName);
 			upload_options.key              = prefixPath + upload_options.FileName;
 			
@@ -48,6 +47,7 @@ package com.nathancolgate.s3_swf_upload {
 
 		private function openHandler(event:Event):void {
 			ExternalInterface.call(S3Uploader.s3_swf_obj+'.onSignatureOpen',toJavascript(_file),event);
+			ExternalInterface.addCallback("changeFileName", changeFileNameHandler);
 		}
 
 		private function progressHandler(progress_event:ProgressEvent):void {
@@ -68,7 +68,6 @@ package com.nathancolgate.s3_swf_upload {
 
   	private function completeHandler(event:Event):void {
 			ExternalInterface.call(S3Uploader.s3_swf_obj+'.onSignatureComplete',toJavascript(_file),event);
-			ExternalInterface.addCallback("changeFileName", changeFileNameHandler);
 			
       var loader:URLLoader = URLLoader(event.target);
       var xml:XML  = new XML(loader.data);
@@ -106,7 +105,7 @@ package com.nathancolgate.s3_swf_upload {
 		}
 		
 		private function changeFileNameHandler(fileName:String):void{
-			upload_options.FileName = fileName;
+			upload_options.FileName         = getFileName(fileName);
 		}
 		
 		// Turns a FileReference into an Object so that ExternalInterface doesn't choke
